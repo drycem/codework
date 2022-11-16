@@ -2,6 +2,8 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
+import {Provider} from 'react-redux';
+import {store} from './context/store';
 import Jobs from './pages/Jobs';
 import Details from './pages/Details';
 import FavoritedJobs from './pages/FavoritedJobs/FavoritedJobs';
@@ -17,19 +19,21 @@ export default () => {
       <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
   );
-
+  console.log(JSON.stringify(store));
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        screenOptions={{
-          headerTitleAlign: 'center',
-          drawerActiveBackgroundColor: colors.primary,
-          drawerActiveTintColor: colors.secondaryColor,
-          drawerItemStyle: {borderRadius: 15},
-        }}>
-        <Drawer.Screen name="Jobs" component={JobsAndDetailsStack} />
-        <Drawer.Screen name="Favorited Jobs" component={FavoritedJobs} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          screenOptions={{
+            headerTitleAlign: 'center',
+            drawerActiveBackgroundColor: colors.primary,
+            drawerActiveTintColor: colors.secondaryColor,
+            drawerItemStyle: {borderRadius: 15},
+          }}>
+          <Drawer.Screen name="Jobs" component={JobsAndDetailsStack} />
+          <Drawer.Screen name="Favorited Jobs" component={FavoritedJobs} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };

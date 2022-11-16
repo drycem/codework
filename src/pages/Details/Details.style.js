@@ -19,4 +19,10 @@ export default StyleSheet.create({
   level: {fontSize: 24},
   title2: {fontSize: 34, fontWeight: 'bold', textAlign: 'center'},
   body: {padding: 5},
+  button_container: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+    marginHorizontal: 30,
+  },
 });
