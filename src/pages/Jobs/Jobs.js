@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, SafeAreaView, Text} from 'react-native';
+import {ActivityIndicator, SafeAreaView} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import JobItem from '../../components/JobItem/JobItem';
 
@@ -19,7 +19,6 @@ export default ({navigation}) => {
       'https://www.themuse.com/api/public/jobs?page=1',
     );
     const {results} = await response.json();
-    console.log(results[1]);
     setJobs(results);
     setLoading(false);
   }

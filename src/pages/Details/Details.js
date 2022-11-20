@@ -1,22 +1,22 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import RenderHtml from '../../components/RenderHtml/RenderHtml';
 import Button from '../../components/Button/Button';
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {addToFavs} from '../../context/features/favorites/favoritesSlice';
 import styles from './Details.style';
 
-export default ({route, navigation}) => {
+export default ({route}) => {
   const item = route.params;
-  const favIds = useSelector(state => state.favorites.arr);
+  // const favIds = useSelector(state => state.favorites.arr);
   const dispatch = useDispatch();
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>{item.name + favIds.length} </Text>
+        <Text style={styles.title}>{item.name} </Text>
         <View style={styles.row_container}>
           <Text style={styles.row_title}>Locations: </Text>
           <Text style={styles.locations}>{item.locations[0].name}</Text>
@@ -37,7 +37,6 @@ export default ({route, navigation}) => {
           text="Add to Favorites"
           onPress={() => {
             dispatch(addToFavs(item.id) || null);
-            console.log(JSON.stringify(favIds));
           }}
         />
       </View>

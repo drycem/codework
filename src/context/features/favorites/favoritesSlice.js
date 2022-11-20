@@ -7,28 +7,20 @@ export const favoritesSlice = createSlice({
     arr: [],
   },
   reducers: {
-    increment: state => {
-      state.value += 1;
-      console.log(state.value);
-    },
-    decrement: state => {
-      state.value -= 1;
-      console.log(state.value);
-    },
     addToFavs: (state, action) => {
       !state.arr.includes(action.payload)
         ? (state.arr = [...state.arr, action.payload])
         : undefined;
     },
     removeFromFavs: (state, action) => {
-      state.arr.includes(action.payload)
-        ? state.arr.pop(action.payload)
-        : undefined;
+      let i = state.arr.indexOf(action.payload);
+      if (i > -1) {
+        state.arr.splice(i, 1);
+      }
     },
   },
 });
 
-export const {increment, decrement, addToFavs, removeFromFavs} =
-  favoritesSlice.actions;
+export const {addToFavs, removeFromFavs} = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;
